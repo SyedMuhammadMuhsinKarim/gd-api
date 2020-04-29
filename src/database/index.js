@@ -1,5 +1,6 @@
 //Import the mongoose module
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+require("dotenv").config();
 const mongoDB = process.env.MONGO;
 
 const connect = () =>

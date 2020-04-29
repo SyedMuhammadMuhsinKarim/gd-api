@@ -1,11 +1,11 @@
 import models from "./model";
 import axios from "axios";
+require("dotenv").config();
 
 const googleLinkCheck = (req, res, next) => {
   axios(
-    `https://www.googleapis.com/drive/v2/files/${req.idLink}?key=${
-      process.env.DRIVEAPIKEY
-    }`
+    `https://www.googleapis.com/drive/v2/files/${req.idLink}?key=${req.apiKey ||
+      process.env.apiKey}`
   )
     .then(myRes => {
       // console.log(myRes.data);
@@ -43,8 +43,9 @@ const databaseCheck = (req, res, next) => {
 };
 
 const googleLinkVerification = (req, res, next) => {
-  console.log(req.body.link, req.body.apiKey);
+  // console.log(req.body.link, req.body.apiKey);
   let link = req.body.link;
+  req.apiKey = req.body.apiKey;
   const regexMatchOne = /https:\/\/drive\.google.com\/file\/d\/(.+?)\/(.+?)/g;
   const regexMatchTwo = /https:\/\/drive\.google\.com\/open\?id\=(.+?)/g;
 

@@ -4,6 +4,7 @@ import connect from "./database";
 import compression from "compression";
 import helmet from "helmet";
 import { routes as mylinks } from "./links";
+require("dotenv").config();
 
 const app = express();
 
